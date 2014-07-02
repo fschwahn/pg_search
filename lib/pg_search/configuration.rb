@@ -44,6 +44,10 @@ module PgSearch
       associations.map(&:columns).flatten
     end
 
+    def order_as
+      options[:order_as] || 'pg_search_rank'
+    end
+
     def query
       options[:query].to_s
     end
@@ -85,7 +89,7 @@ module PgSearch
     end
 
     VALID_KEYS = %w[
-      against ranked_by ignoring using query associated_against order_within_rank
+      against ranked_by ignoring using query associated_against order_within_rank order_as
     ].map(&:to_sym)
 
     VALID_VALUES = {
